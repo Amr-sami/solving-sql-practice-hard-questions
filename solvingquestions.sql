@@ -139,6 +139,30 @@ case when province_name = "Ontario" THEN 0
 ELSE 1 
 END
 
+-- Question 11 difficulty: Hard
+SELECT 
+    d.doctor_id, 
+    CONCAT(d.first_name, ' ', d.last_name) AS doctor_name, 
+    d.specialty, 
+    YEAR(a.admission_date) AS year, 
+    COUNT(a.admission_date) AS total_admissions
+FROM 
+    doctors d
+JOIN 
+    admissions a ON d.doctor_id = a.attending_doctor_id
+GROUP BY 
+    d.doctor_id, 
+    doctor_name, 
+    d.specialty, 
+    YEAR(a.admission_date)
+ORDER BY 
+    d.doctor_id, 
+    year;
+    
+
+    
+
+
 
 
 
